@@ -38,7 +38,7 @@ namespace ExamManager.ViewModel
         #endregion
         public AllExamWindowVM(){
             LoadWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) => {
-                List = new ObservableCollection<QuizList>(DataProvider.Ins.DB.QuizLists);
+                List = new ObservableCollection<QuizList>(DataProvider.Ins.DB.QuizList);
                 ExamList = new ObservableCollection<Ex>();
 
                 foreach (QuizList i in List)
@@ -47,8 +47,8 @@ namespace ExamManager.ViewModel
                     {
                         Subject = DataProvider.Ins.DB.Subjects.Where(x => x.Id == i.SubjectsId).SingleOrDefault().SubjectName,
                         ExamName = i.NameList,
-                        DayOpen = DataProvider.Ins.DB.ExamInfoes.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayOpen.Value,
-                        DayEnd = DataProvider.Ins.DB.ExamInfoes.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayEnd.Value
+                        DayOpen = DataProvider.Ins.DB.ExamInfo.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayOpen.Value,
+                        DayEnd = DataProvider.Ins.DB.ExamInfo.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayEnd.Value
                     });
 
                 }

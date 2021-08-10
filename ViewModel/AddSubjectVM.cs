@@ -62,7 +62,7 @@ namespace ExamManager.ViewModel
                 }
                 else
                 {
-                    Model.Subject a = new Model.Subject() { SubjectName = Subject, Descriptions = Descriptions };
+                    Model.Subjects a = new Model.Subjects() { SubjectName = Subject, Descriptions = Descriptions };
                     DataProvider.Ins.DB.Subjects.Add(a);
                 }
                 DataProvider.Ins.DB.SaveChanges();

@@ -14,12 +14,12 @@ namespace ExamManager.ViewModel
     public class ListCandidateVM : BaseViewModel
     {
         #region initialize
-        private ObservableCollection<User> _List;
-        public ObservableCollection<User> List { get => _List; set { _List = value; OnPropertyChanged(); } }
+        private ObservableCollection<Users> _List;
+        public ObservableCollection<Users> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
-        private User _SelectedUser;
-        public User SelectedUser { get => _SelectedUser; set { _SelectedUser = value; OnPropertyChanged(); } }
-
+        private Users _SelectedUser;
+        public Users SelectedUser { get => _SelectedUser; set { _SelectedUser = value; OnPropertyChanged(); } }
+        
         private string _Name;
         public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
 
@@ -167,7 +167,7 @@ namespace ExamManager.ViewModel
                 MessageBoxResult a = MessageBox.Show("Bạn có muốn người dùng này quyền " + Permission + ", Lưu ý không thể sửa sau này", "Chú ý !", MessageBoxButton.OKCancel);
                 if (a == MessageBoxResult.Cancel) return;
 
-                DataProvider.Ins.DB.Users.Add(new User {UserName = UserName, PassWord = PassWord, Name = Name, PhoneNumber = PhoneNumber,
+                DataProvider.Ins.DB.Users.Add(new Users {UserName = UserName, PassWord = PassWord, Name = Name, PhoneNumber = PhoneNumber,
                     Gender = Gender, BirthDay = BirthDay, Job = Job, Permission = Permission, MoreInfo = MoreInfo
                 });
                 DataProvider.Ins.DB.SaveChanges();
@@ -189,9 +189,9 @@ namespace ExamManager.ViewModel
                     return;
                 }
 
-                var n =DataProvider.Ins.DB.UserExams.Where(x=>x.UserId == u.Id);
+                var n =DataProvider.Ins.DB.UserExam.Where(x=>x.UserId == u.Id);
                 foreach (var i in n) {
-                    DataProvider.Ins.DB.UserExams.Remove(i);
+                    DataProvider.Ins.DB.UserExam.Remove(i);
                     DataProvider.Ins.DB.SaveChanges();
                 }
                 DataProvider.Ins.DB.Users.Remove(u);
@@ -205,16 +205,16 @@ namespace ExamManager.ViewModel
         void ResetList()
         {
             var n = DataProvider.Ins.DB.Users;
-            List = new ObservableCollection<User>();
-            foreach (User i in n)
+            List = new ObservableCollection<Users>();
+            foreach (Users i in n)
             {
                 if (i.Permission == 1) List.Add(i);
             }
-            foreach (User i in n)
+            foreach (Users i in n)
             {
                 if (i.Permission == 2) List.Add(i);
             }
-            foreach (User i in n)
+            foreach (Users i in n)
             {
                 if (i.Permission == 3) List.Add(i);
             }

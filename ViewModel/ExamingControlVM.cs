@@ -160,7 +160,7 @@ namespace ExamManager.ViewModel
 
                 #endregion
 
-                var a = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == HomeVM.exam_info.Id).ToList();
+                var a = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == HomeVM.exam_info.Id).ToList();
 
                 if (ExamingVM.index == index) {
                     gr1.Visibility = Visibility.Collapsed;
@@ -168,7 +168,7 @@ namespace ExamManager.ViewModel
                 }
 
                 Question1 = "Câu " + (index + 1) + " : " + a[index].Content;
-                List<Answer> b1 = new List<Answer>(a[index].Answers);
+                List<Answer> b1 = new List<Answer>(a[index].Answer);
                 Answer11 = "A. "+b1[0].Content;
                 Answer21 = "B. "+b1[1].Content;
                 Answer31 = "C. "+b1[2].Content;
@@ -200,7 +200,7 @@ namespace ExamManager.ViewModel
                     return;
                 }
                 Question2 = "Câu "+(index+1)+ " : "+ a[index].Content;
-                List<Answer> b2 = new List<Answer>(a[index].Answers);
+                List<Answer> b2 = new List<Answer>(a[index].Answer);
                 Answer12 = "A. "+b2[0].Content;
                 Answer22 = "B. "+b2[1].Content;
                 Answer32 = "C. "+b2[2].Content;
@@ -233,7 +233,7 @@ namespace ExamManager.ViewModel
                     return;
                 }
                 Question3 = "Câu " + (index + 1) + " : " + a[index].Content;
-                List<Answer> b3 = new List<Answer>(a[index].Answers);
+                List<Answer> b3 = new List<Answer>(a[index].Answer);
                 Answer13 = "A. "+b3[0].Content;
                 Answer23 = "B. "+b3[1].Content;
                 Answer33 = "C. "+b3[2].Content;

@@ -58,11 +58,11 @@ namespace ExamManager.ViewModel
         private string _Duration;
         public string Duration { get => _Duration; set { _Duration = value; OnPropertyChanged(); } }
 
-        private Subject _Subject;
-        public Subject Subject { get => _Subject; set { _Subject = value; OnPropertyChanged(); } }
+        private Subjects _Subject;
+        public Subjects Subject { get => _Subject; set { _Subject = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<Subject> _SubjectList;
-        public ObservableCollection<Subject> SubjectList { get => _SubjectList; set { _SubjectList = value; OnPropertyChanged(); } }
+        private ObservableCollection<Subjects> _SubjectList;
+        public ObservableCollection<Subjects> SubjectList { get => _SubjectList; set { _SubjectList = value; OnPropertyChanged(); } }
 
       
         #endregion
@@ -140,15 +140,15 @@ namespace ExamManager.ViewModel
 
                 isBack = false;
 
-                SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects);
+                SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects);
 
                 List = new ObservableCollection<Question>();
                 if(AddExamVM.isEdit)
                 {
-                    var a = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == ExamVM.quizlist.Id).ToList();
+                    var a = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == ExamVM.quizlist.Id).ToList();
                     foreach(Quiz i in a)
                     {
-                        var b = i.Answers.ToList();
+                        var b = i.Answer.ToList();
                         List.Add(new Question()
                         {
                             question = i.Content,
@@ -187,8 +187,8 @@ namespace ExamManager.ViewModel
                 isBack = true;
                 if(AddExamVM.isEdit) { p.Close(); return; }
 
-                DataProvider.Ins.DB.ExamInfoes.Remove(ExamVM.quizlist.ExamInfoes.FirstOrDefault());
-                DataProvider.Ins.DB.QuizLists.Remove(ExamVM.quizlist);
+                DataProvider.Ins.DB.ExamInfo.Remove(ExamVM.quizlist.ExamInfo.FirstOrDefault());
+                DataProvider.Ins.DB.QuizList.Remove(ExamVM.quizlist);
 
                 DataProvider.Ins.DB.SaveChanges();
                 p.Close();
@@ -244,20 +244,20 @@ namespace ExamManager.ViewModel
                 if (p == null)
                     return;
 
-                foreach (Quiz i in ExamVM.quizlist.Quizs)
+                foreach (Quiz i in ExamVM.quizlist.Quiz)
                 {
 
-                    var b =  DataProvider.Ins.DB.Answers.Where(x => x.QuizId == i.Id).ToList();
-                    DataProvider.Ins.DB.Answers.Remove(b[0]);
-                    DataProvider.Ins.DB.Answers.Remove(b[1]);
-                    DataProvider.Ins.DB.Answers.Remove(b[2]);
-                    DataProvider.Ins.DB.Answers.Remove(b[3]);
+                    var b =  DataProvider.Ins.DB.Answer.Where(x => x.QuizId == i.Id).ToList();
+                    DataProvider.Ins.DB.Answer.Remove(b[0]);
+                    DataProvider.Ins.DB.Answer.Remove(b[1]);
+                    DataProvider.Ins.DB.Answer.Remove(b[2]);
+                    DataProvider.Ins.DB.Answer.Remove(b[3]);
 
                 }
-                var qui = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == ExamVM.quizlist.Id).ToList();
+                var qui = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == ExamVM.quizlist.Id).ToList();
                 foreach (Quiz i in qui)
                 {
-                    DataProvider.Ins.DB.Quizs.Remove(i);
+                    DataProvider.Ins.DB.Quiz.Remove(i);
 
                 }
 
@@ -274,19 +274,19 @@ namespace ExamManager.ViewModel
                     var a3 = new Answer() { QuizId = quiz.Id, Content = i.Answer3, IsCorrect = i.CbAnswer3 ? 1 : 0 };
                     var a4 = new Answer() { QuizId = quiz.Id, Content = i.Answer4, IsCorrect = i.CbAnswer4 ? 1 : 0 };
 
-                    DataProvider.Ins.DB.Quizs.Add(quiz);
-                    DataProvider.Ins.DB.Answers.Add(a1);
-                    DataProvider.Ins.DB.Answers.Add(a2);
-                    DataProvider.Ins.DB.Answers.Add(a3);
-                    DataProvider.Ins.DB.Answers.Add(a4);
+                    DataProvider.Ins.DB.Quiz.Add(quiz);
+                    DataProvider.Ins.DB.Answer.Add(a1);
+                    DataProvider.Ins.DB.Answer.Add(a2);
+                    DataProvider.Ins.DB.Answer.Add(a3);
+                    DataProvider.Ins.DB.Answer.Add(a4);
                     DataProvider.Ins.DB.SaveChanges();
                 }
-                var a = DataProvider.Ins.DB.QuizLists.Where(x => x.Id == ExamVM.quizlist.Id).FirstOrDefault();
+                var a = DataProvider.Ins.DB.QuizList.Where(x => x.Id == ExamVM.quizlist.Id).FirstOrDefault();
                 a.SubjectsId = Subject.Id;
                 a.NameList = ExamName;
-                a.ExamInfoes.FirstOrDefault().Duration = Convert.ToInt32(Duration);
-                a.ExamInfoes.FirstOrDefault().DayOpen = DayOpen;
-                a.ExamInfoes.FirstOrDefault().DayEnd = DayEnd;
+                a.ExamInfo.FirstOrDefault().Duration = Convert.ToInt32(Duration);
+                a.ExamInfo.FirstOrDefault().DayOpen = DayOpen;
+                a.ExamInfo.FirstOrDefault().DayEnd = DayEnd;
 
                 DataProvider.Ins.DB.SaveChanges();
 

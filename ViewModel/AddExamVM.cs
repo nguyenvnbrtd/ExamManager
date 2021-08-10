@@ -84,7 +84,7 @@ namespace ExamManager.ViewModel
             });
 
             EditCommand = new RelayCommand<Object>((p) => { return true; }, (p) => {
-                a = DataProvider.Ins.DB.QuizLists.Where(x=>x.NameList == SelectedExam.ExamName && x.Subject.SubjectName == SelectedExam.Subject).FirstOrDefault();
+                a = DataProvider.Ins.DB.QuizList.Where(x=>x.NameList == SelectedExam.ExamName && x.Subjects.SubjectName == SelectedExam.Subject).FirstOrDefault();
                 isEdit = true;
 
                 ExamInfo ex = new ExamInfo();
@@ -105,37 +105,37 @@ namespace ExamManager.ViewModel
                 if(r == MessageBoxResult.OK) return true;
                 else return false;
             }, (p) => {
-                var b = DataProvider.Ins.DB.QuizLists.Where(x => x.NameList == SelectedExam.ExamName && x.Subject.SubjectName == SelectedExam.Subject).FirstOrDefault();
-                var c = DataProvider.Ins.DB.Quizs.Where(x=>x.QuizListId == b.Id).ToList();
+                var b = DataProvider.Ins.DB.QuizList.Where(x => x.NameList == SelectedExam.ExamName && x.Subjects.SubjectName == SelectedExam.Subject).FirstOrDefault();
+                var c = DataProvider.Ins.DB.Quiz.Where(x=>x.QuizListId == b.Id).ToList();
 
                 foreach(Quiz i in c)
                 {
-                    var answer = i.Answers.ToList();
-                    DataProvider.Ins.DB.Answers.Remove(answer[0]);
-                    DataProvider.Ins.DB.Answers.Remove(answer[1]);
-                    DataProvider.Ins.DB.Answers.Remove(answer[2]);
-                    DataProvider.Ins.DB.Answers.Remove(answer[3]);
+                    var answer = i.Answer.ToList();
+                    DataProvider.Ins.DB.Answer.Remove(answer[0]);
+                    DataProvider.Ins.DB.Answer.Remove(answer[1]);
+                    DataProvider.Ins.DB.Answer.Remove(answer[2]);
+                    DataProvider.Ins.DB.Answer.Remove(answer[3]);
                     
                 }
                 DataProvider.Ins.DB.SaveChanges();
 
                 foreach (Quiz i in c)
                 {
-                    DataProvider.Ins.DB.Quizs.Remove(i);
+                    DataProvider.Ins.DB.Quiz.Remove(i);
                 }
                 DataProvider.Ins.DB.SaveChanges();
 
-                var n = b.ExamInfoes.FirstOrDefault().UserExams.ToList();
+                var n = b.ExamInfo.FirstOrDefault().UserExam.ToList();
                 foreach(UserExam i in n)
                 {
-                    DataProvider.Ins.DB.UserExams.Remove(i);
+                    DataProvider.Ins.DB.UserExam.Remove(i);
                 }
                 DataProvider.Ins.DB.SaveChanges();
 
-                DataProvider.Ins.DB.ExamInfoes.Remove(b.ExamInfoes.FirstOrDefault());
+                DataProvider.Ins.DB.ExamInfo.Remove(b.ExamInfo.FirstOrDefault());
                 DataProvider.Ins.DB.SaveChanges();
 
-                DataProvider.Ins.DB.QuizLists.Remove(b);
+                DataProvider.Ins.DB.QuizList.Remove(b);
                 DataProvider.Ins.DB.SaveChanges();
 
                 UpdateList();
@@ -147,7 +147,7 @@ namespace ExamManager.ViewModel
         }
 
         void UpdateList() {
-            List = new ObservableCollection<QuizList>(DataProvider.Ins.DB.QuizLists);
+            List = new ObservableCollection<QuizList>(DataProvider.Ins.DB.QuizList);
             ExamList = new ObservableCollection<Ex>();
             Stack<Ex> stack = new Stack<Ex>();
 
@@ -157,8 +157,8 @@ namespace ExamManager.ViewModel
                 {
                     Subject = DataProvider.Ins.DB.Subjects.Where(x => x.Id == i.SubjectsId).SingleOrDefault().SubjectName,
                     ExamName = i.NameList,
-                    DayOpen = DataProvider.Ins.DB.ExamInfoes.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayOpen.Value,
-                    DayEnd = DataProvider.Ins.DB.ExamInfoes.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayEnd.Value
+                    DayOpen = DataProvider.Ins.DB.ExamInfo.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayOpen.Value,
+                    DayEnd = DataProvider.Ins.DB.ExamInfo.Where(x => x.QuizListId == i.Id).SingleOrDefault().DayEnd.Value
                 });
 
             }

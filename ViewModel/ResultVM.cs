@@ -40,10 +40,10 @@ namespace ExamManager.ViewModel
 
                 List = new ObservableCollection<Result_Exam>();
 
-                List<UserExam> ue = new List<UserExam>(DataProvider.Ins.DB.UserExams.Where(x=>x.UserId == LoginWindowVM.idUser));
+                List<UserExam> ue = new List<UserExam>(DataProvider.Ins.DB.UserExam.Where(x=>x.UserId == LoginWindowVM.idUser));
 
                 foreach (UserExam i in ue ) {
-                    List.Add(new Result_Exam() { ExamName = i.ExamInfo.QuizList.NameList, Subject = i.ExamInfo.QuizList.Subject.SubjectName, Point = String.Format("{0:0.#}" ,i.ExamPoint) });
+                    List.Add(new Result_Exam() { ExamName = i.ExamInfo.QuizList.NameList, Subject = i.ExamInfo.QuizList.Subjects.SubjectName, Point = String.Format("{0:0.#}" ,i.ExamPoint) });
                 }
               
             });

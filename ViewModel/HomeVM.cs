@@ -60,7 +60,7 @@ namespace ExamManager.ViewModel
                     if (i.Name == "gr5" && String.IsNullOrEmpty(Ex5)) i.Visibility = Visibility.Visible;
                     if (i.Name == "gr6" && String.IsNullOrEmpty(Ex5)) i.Visibility = Visibility.Collapsed;
                 }
-                var b = DataProvider.Ins.DB.QuizLists.Where(x => x.ExamInfoes.FirstOrDefault().DayOpen <= DateTime.Now && x.ExamInfoes.FirstOrDefault().DayEnd.Value > DateTime.Now);
+                var b = DataProvider.Ins.DB.QuizList.Where(x => x.ExamInfo.FirstOrDefault().DayOpen <= DateTime.Now && x.ExamInfo.FirstOrDefault().DayEnd.Value > DateTime.Now);
                 a = new ObservableCollection<QuizList>( b);
                 Ex6 = "Tất cả";
                 try {

@@ -73,7 +73,7 @@ namespace ExamManager.ViewModel
             LoadHintCommand = new RelayCommand<WrapPanel>((p) => { return true; }, (p) => {
                 if (p == null)
                     return;
-                index = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == QuizList.Id).Count();
+                index = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == QuizList.Id).Count();
                 wp = new List<TextBlock>();
                 for (int i = 0; i < index; i++)
                 {
@@ -105,10 +105,10 @@ namespace ExamManager.ViewModel
 
                 QuizList = HomeVM.exam_info;
                 ExamName = QuizList.NameList;
-                Duration = DataProvider.Ins.DB.ExamInfoes.Where(x => x.QuizListId == QuizList.Id).SingleOrDefault().Duration.ToString();
+                Duration = DataProvider.Ins.DB.ExamInfo.Where(x => x.QuizListId == QuizList.Id).SingleOrDefault().Duration.ToString();
                 Subject = DataProvider.Ins.DB.Subjects.Where(x => x.Id == QuizList.SubjectsId).SingleOrDefault().SubjectName;
                 
-                index = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == QuizList.Id).Count();
+                index = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == QuizList.Id).Count();
                 ExamingControlVM.CbAnswer = new List<int>();
 
                 for (int i =0; i<index; i++) { ExamingControlVM.CbAnswer.Add(0); }
@@ -137,9 +137,9 @@ namespace ExamManager.ViewModel
 
                 float point = 10*((float)Point()/index);
 
-                var b = DataProvider.Ins.DB.ExamInfoes.Where(x=>x.QuizListId == QuizList.Id).SingleOrDefault();
+                var b = DataProvider.Ins.DB.ExamInfo.Where(x=>x.QuizListId == QuizList.Id).SingleOrDefault();
 
-                var check = DataProvider.Ins.DB.UserExams.Where(x=>x.UserId == LoginWindowVM.idUser &&
+                var check = DataProvider.Ins.DB.UserExam.Where(x=>x.UserId == LoginWindowVM.idUser &&
                     x.ExamInfoId == b.Id).SingleOrDefault();
 
                 if (check == null)
@@ -151,7 +151,7 @@ namespace ExamManager.ViewModel
                         ExamPoint = point,
                         TimeEntry = TimeEntry
                     }; 
-                    DataProvider.Ins.DB.UserExams.Add(userExam);
+                    DataProvider.Ins.DB.UserExam.Add(userExam);
                 }
                 else
                 {
@@ -211,13 +211,13 @@ namespace ExamManager.ViewModel
         {
             int point=0;
 
-            var a = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == QuizList.Id).ToList();
+            var a = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == QuizList.Id).ToList();
 
             for(int i = 0; i < index; i++)
             {
                 int y = ExamingControlVM.CbAnswer[i];
                 if (y == 0) { continue; }
-                if (a[i].Answers.ToList()[y-1].IsCorrect == 1) {
+                if (a[i].Answer.ToList()[y-1].IsCorrect == 1) {
                     point++;
                 }
             }

@@ -26,18 +26,18 @@ namespace ExamManager.ViewModel
         private string _Duration;
         public string Duration { get => _Duration; set { _Duration = value; OnPropertyChanged(); } }
 
-        private Subject _Subject;
-        public Subject Subject { get => _Subject; set { _Subject = value; OnPropertyChanged(); } }
+        private Subjects _Subject;
+        public Subjects Subject { get => _Subject; set { _Subject = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<Subject> _SubjectList;
-        public ObservableCollection<Subject> SubjectList { get => _SubjectList; set { _SubjectList = value; OnPropertyChanged(); } }
+        private ObservableCollection<Subjects> _SubjectList;
+        public ObservableCollection<Subjects> SubjectList { get => _SubjectList; set { _SubjectList = value; OnPropertyChanged(); } }
 
         private Visibility _TbWarning;
         public Visibility TbWarning { get => _TbWarning; set { _TbWarning = value; OnPropertyChanged(); } }
 
         public static string exname;
         public static string duration;
-        public static Subject subject;
+        public static Subjects subject;
         public static QuizList quizlist;
         public static DateTime dayopen;
         public static DateTime dayend;
@@ -70,11 +70,11 @@ namespace ExamManager.ViewModel
                         if (i.Name == "btNewSubject") i.Visibility = Visibility.Collapsed;
                     }
                     ExamName = HomeVM.exam_info.NameList;
-                    DayOpen = HomeVM.exam_info.ExamInfoes.FirstOrDefault().DayOpen.Value;
-                    DayEnd = HomeVM.exam_info.ExamInfoes.FirstOrDefault().DayEnd.Value;
-                    Duration = HomeVM.exam_info.ExamInfoes.FirstOrDefault().Duration.ToString();
-                    Subject = HomeVM.exam_info.Subject;
-                    SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects);
+                    DayOpen = HomeVM.exam_info.ExamInfo.FirstOrDefault().DayOpen.Value;
+                    DayEnd = HomeVM.exam_info.ExamInfo.FirstOrDefault().DayEnd.Value;
+                    Duration = HomeVM.exam_info.ExamInfo.FirstOrDefault().Duration.ToString();
+                    Subject = HomeVM.exam_info.Subjects;
+                    SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects);
                     IsBack = false;
                 }
                 else
@@ -104,14 +104,14 @@ namespace ExamManager.ViewModel
                     else
                     {
                         ExamName = AddExamVM.a.NameList;
-                        DayOpen = AddExamVM.a.ExamInfoes.FirstOrDefault().DayOpen.Value;
-                        DayEnd = AddExamVM.a.ExamInfoes.FirstOrDefault().DayEnd.Value;
-                        Duration = AddExamVM.a.ExamInfoes.FirstOrDefault().Duration.ToString();
-                        Subject = AddExamVM.a.Subject;
+                        DayOpen = AddExamVM.a.ExamInfo.FirstOrDefault().DayOpen.Value;
+                        DayEnd = AddExamVM.a.ExamInfo.FirstOrDefault().DayEnd.Value;
+                        Duration = AddExamVM.a.ExamInfo.FirstOrDefault().Duration.ToString();
+                        Subject = AddExamVM.a.Subjects;
                       
                     }
                     IsBack = false;
-                    SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects);
+                    SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects);
 
                 }
                 TbWarning = Visibility.Collapsed;
@@ -152,14 +152,14 @@ namespace ExamManager.ViewModel
                 }
                 else
                 {
-                    var a = DataProvider.Ins.DB.QuizLists.Where(x => x.NameList == ExamName && x.Subject.SubjectName == Subject.SubjectName).FirstOrDefault();
-                    if (DataProvider.Ins.DB.QuizLists.Where(x => x.NameList == ExamName && x.Subject.SubjectName == Subject.SubjectName).Count() > 0) {
+                    var a = DataProvider.Ins.DB.QuizList.Where(x => x.NameList == ExamName && x.Subjects.SubjectName == Subject.SubjectName).FirstOrDefault();
+                    if (DataProvider.Ins.DB.QuizList.Where(x => x.NameList == ExamName && x.Subjects.SubjectName == Subject.SubjectName).Count() > 0) {
                         MessageBoxResult r = MessageBox.Show("Bạn có muốn sửa lại bài thi ?","Bài thi " + ExamName+" của môn "+ Subject.SubjectName+" đã có sẵn" ,MessageBoxButton.OKCancel);
                         AddExamVM.isEdit = true;
                         if (r == MessageBoxResult.OK)
                         {
                             quizlist = a;
-                            examinfo = a.ExamInfoes.FirstOrDefault();
+                            examinfo = a.ExamInfo.FirstOrDefault();
                         }
                         else
                         {
@@ -170,10 +170,10 @@ namespace ExamManager.ViewModel
                     else
                     {
                         quizlist = new QuizList() { NameList = ExamName, SubjectsId = DataProvider.Ins.DB.Subjects.Where(x => x.Id == Subject.Id).SingleOrDefault().Id };
-                        DataProvider.Ins.DB.QuizLists.Add(quizlist);
+                        DataProvider.Ins.DB.QuizList.Add(quizlist);
 
                         examinfo = new Model.ExamInfo() { QuizListId = quizlist.Id, DayOpen = DayOpen, DayEnd = DayEnd, Duration = Convert.ToInt32(Duration), Ispublic = 1 };
-                        DataProvider.Ins.DB.ExamInfoes.Add(examinfo);
+                        DataProvider.Ins.DB.ExamInfo.Add(examinfo);
                         DataProvider.Ins.DB.SaveChanges();
 
                     }
@@ -198,7 +198,7 @@ namespace ExamManager.ViewModel
                 p.Hide();
                 AddSubject aj = new AddSubject();
                 aj.ShowDialog();
-                if (AddSubjectVM.change) { SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects); Subject = SubjectList.Last(); }
+                if (AddSubjectVM.change) { SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects); Subject = SubjectList.Last(); }
 
                 p.ShowDialog();
                 

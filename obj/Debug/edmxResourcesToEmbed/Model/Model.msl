@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ExamManagerModelStoreContainer" CdmEntityContainer="ExamManagerEntities">
-    <EntitySetMapping Name="Answer">
-      <EntityTypeMapping TypeName="ExamManagerModel.Answer">
-        <MappingFragment StoreEntitySet="Answer">
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="ExamManagerModel.Answers">
+        <MappingFragment StoreEntitySet="Answers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="QuizId" ColumnName="QuizId" />
           <ScalarProperty Name="Content" ColumnName="Content" />
@@ -11,33 +11,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ExamInfo">
-      <EntityTypeMapping TypeName="ExamManagerModel.ExamInfo">
-        <MappingFragment StoreEntitySet="ExamInfo">
+    <EntitySetMapping Name="ExamInfoes">
+      <EntityTypeMapping TypeName="ExamManagerModel.ExamInfoes">
+        <MappingFragment StoreEntitySet="ExamInfoes">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="QuizListId" ColumnName="QuizListId" />
           <ScalarProperty Name="DayOpen" ColumnName="DayOpen" />
           <ScalarProperty Name="DayEnd" ColumnName="DayEnd" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="TimeEntry" ColumnName="TimeEntry" />
           <ScalarProperty Name="Ispublic" ColumnName="Ispublic" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Quiz">
-      <EntityTypeMapping TypeName="ExamManagerModel.Quiz">
-        <MappingFragment StoreEntitySet="Quiz">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="QuizListId" ColumnName="QuizListId" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="QuizList">
-      <EntityTypeMapping TypeName="ExamManagerModel.QuizList">
-        <MappingFragment StoreEntitySet="QuizList">
+    <EntitySetMapping Name="QuizLists">
+      <EntityTypeMapping TypeName="ExamManagerModel.QuizLists">
+        <MappingFragment StoreEntitySet="QuizLists">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SubjectsId" ColumnName="SubjectsId" />
           <ScalarProperty Name="NameList" ColumnName="NameList" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quizs">
+      <EntityTypeMapping TypeName="ExamManagerModel.Quizs">
+        <MappingFragment StoreEntitySet="Quizs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuizListId" ColumnName="QuizListId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,8 +46,7 @@
       <EntityTypeMapping TypeName="ExamManagerModel.Subjects">
         <MappingFragment StoreEntitySet="Subjects">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
-          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="SujectName" ColumnName="SujectName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -56,7 +56,6 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ExamInfoId" ColumnName="ExamInfoId" />
           <ScalarProperty Name="ExamPoint" ColumnName="ExamPoint" />
-          <ScalarProperty Name="TimeEntry" ColumnName="TimeEntry" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -65,7 +64,7 @@
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="PassWork" ColumnName="PassWork" />
           <ScalarProperty Name="Permission" ColumnName="Permission" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />

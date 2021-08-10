@@ -14,14 +14,14 @@ namespace ExamManager.ViewModel
     {
         #region initialize
 
-        private Subject _SelectedSubject;
-        public Subject SelectedSubject { get => _SelectedSubject; set { _SelectedSubject = value; OnPropertyChanged(); } }
+        private Subjects _SelectedSubject;
+        public Subjects SelectedSubject { get => _SelectedSubject; set { _SelectedSubject = value; OnPropertyChanged(); } }
 
         private string _Descriptions;
         public string Descriptions { get => _Descriptions; set { _Descriptions = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<Subject> _SubjectList;
-        public ObservableCollection<Subject> SubjectList { get => _SubjectList; set { _SubjectList = value; OnPropertyChanged(); } }
+        private ObservableCollection<Subjects> _SubjectList;
+        public ObservableCollection<Subjects> SubjectList { get => _SubjectList; set { _SubjectList = value; OnPropertyChanged(); } }
 
         #endregion
 
@@ -36,12 +36,12 @@ namespace ExamManager.ViewModel
 
         #region public static
         public static bool isEdit;
-        public static Subject Subject;
+        public static Subjects Subject;
         #endregion
         public SubjectVM(){
             LoadWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) => {
 
-                SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects);
+                SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects);
                 if (SubjectList == null) return;
                 SelectedSubject = SubjectList.First();
                 Descriptions = SelectedSubject.Descriptions;
@@ -55,7 +55,7 @@ namespace ExamManager.ViewModel
             NewSubjectCommand = new RelayCommand<Object>((p) => { return true; }, (p) => {
                 AddSubject aj = new AddSubject();
                 aj.ShowDialog();
-                if (AddSubjectVM.change) { SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects); SelectedSubject = SubjectList.FirstOrDefault(); }
+                if (AddSubjectVM.change) { SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects); SelectedSubject = SubjectList.FirstOrDefault(); }
 
             });
 
@@ -66,7 +66,7 @@ namespace ExamManager.ViewModel
                 AddSubject aj = new AddSubject();
                 aj.ShowDialog();
 
-                SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects);
+                SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects);
                 if (SubjectList == null) return;
                 
                 Descriptions = SelectedSubject.Descriptions;
@@ -80,39 +80,39 @@ namespace ExamManager.ViewModel
                 else return false;
             }, (p) => {
                 
-                var q = DataProvider.Ins.DB.QuizLists.Where(x => x.SubjectsId == SelectedSubject.Id).ToList();
+                var q = DataProvider.Ins.DB.QuizList.Where(x => x.SubjectsId == SelectedSubject.Id).ToList();
                 foreach(QuizList b in q)
                 {
-                    var c = DataProvider.Ins.DB.Quizs.Where(x => x.QuizListId == b.Id).ToList();
+                    var c = DataProvider.Ins.DB.Quiz.Where(x => x.QuizListId == b.Id).ToList();
 
                     foreach (Quiz i in c)
                     {
-                        var answer = i.Answers.ToList();
-                        DataProvider.Ins.DB.Answers.Remove(answer[0]);
-                        DataProvider.Ins.DB.Answers.Remove(answer[1]);
-                        DataProvider.Ins.DB.Answers.Remove(answer[2]);
-                        DataProvider.Ins.DB.Answers.Remove(answer[3]);
+                        var answer = i.Answer.ToList();
+                        DataProvider.Ins.DB.Answer.Remove(answer[0]);
+                        DataProvider.Ins.DB.Answer.Remove(answer[1]);
+                        DataProvider.Ins.DB.Answer.Remove(answer[2]);
+                        DataProvider.Ins.DB.Answer.Remove(answer[3]);
 
                     }
                     DataProvider.Ins.DB.SaveChanges();
 
                     foreach (Quiz i in c)
                     {
-                        DataProvider.Ins.DB.Quizs.Remove(i);
+                        DataProvider.Ins.DB.Quiz.Remove(i);
                     }
                     DataProvider.Ins.DB.SaveChanges();
 
-                    var n = b.ExamInfoes.FirstOrDefault().UserExams.ToList();
+                    var n = b.ExamInfo.FirstOrDefault().UserExam.ToList();
                     foreach (UserExam i in n)
                     {
-                        DataProvider.Ins.DB.UserExams.Remove(i);
+                        DataProvider.Ins.DB.UserExam.Remove(i);
                     }
                     DataProvider.Ins.DB.SaveChanges();
 
-                    DataProvider.Ins.DB.ExamInfoes.Remove(b.ExamInfoes.FirstOrDefault());
+                    DataProvider.Ins.DB.ExamInfo.Remove(b.ExamInfo.FirstOrDefault());
                     DataProvider.Ins.DB.SaveChanges();
 
-                    DataProvider.Ins.DB.QuizLists.Remove(b);
+                    DataProvider.Ins.DB.QuizList.Remove(b);
                     DataProvider.Ins.DB.SaveChanges();
 
                 }
@@ -120,7 +120,7 @@ namespace ExamManager.ViewModel
                 DataProvider.Ins.DB.Subjects.Remove(SelectedSubject);
                 DataProvider.Ins.DB.SaveChanges();
 
-                SubjectList = new ObservableCollection<Subject>(DataProvider.Ins.DB.Subjects);
+                SubjectList = new ObservableCollection<Subjects>(DataProvider.Ins.DB.Subjects);
 
                 if (SubjectList.Count() <= 0) { Descriptions = ""; return; }
                 SelectedSubject = SubjectList.First();

@@ -44,16 +44,6 @@
     <Property Name="SubjectName" Type="nvarchar(max)" />
     <Property Name="Descriptions" Type="nvarchar(max)" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="UserExam">
     <Key>
       <PropertyRef Name="UserId" />
@@ -61,14 +51,15 @@
     </Key>
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="ExamInfoId" Type="int" Nullable="false" />
-    <Property Name="ExamPoint" Type="float" />
     <Property Name="TimeEntry" Type="datetime" />
+    <Property Name="ExamPoint" Type="float" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
     <Property Name="PassWord" Type="nvarchar(max)" />
     <Property Name="Permission" Type="int" />
     <Property Name="Name" Type="nvarchar(max)" />
@@ -77,9 +68,8 @@
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
     <Property Name="Job" Type="nvarchar(max)" />
     <Property Name="MoreInfo" Type="nvarchar(max)" />
-    <Property Name="UserName" Type="nvarchar(max)" />
   </EntityType>
-  <Association Name="FK__Answer__QuizId__1A14E395">
+  <Association Name="FK__Answer__QuizId__2E1BDC42">
     <End Role="Quiz" Type="Self.Quiz" Multiplicity="1" />
     <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
     <ReferentialConstraint>
@@ -91,7 +81,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ExamInfo__QuizLi__1CF15040">
+  <Association Name="FK__ExamInfo__QuizLi__30F848ED">
     <End Role="QuizList" Type="Self.QuizList" Multiplicity="1" />
     <End Role="ExamInfo" Type="Self.ExamInfo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -103,7 +93,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Quiz__Content__173876EA">
+  <Association Name="FK__Quiz__Content__2B3F6F97">
     <End Role="QuizList" Type="Self.QuizList" Multiplicity="1" />
     <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
     <ReferentialConstraint>
@@ -115,7 +105,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QuizList__NameLi__145C0A3F">
+  <Association Name="FK__QuizList__NameLi__286302EC">
     <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
     <End Role="QuizList" Type="Self.QuizList" Multiplicity="*" />
     <ReferentialConstraint>
@@ -127,7 +117,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UserExam__ExamIn__20C1E124">
+  <Association Name="FK__UserExam__ExamIn__34C8D9D1">
     <End Role="ExamInfo" Type="Self.ExamInfo" Multiplicity="1" />
     <End Role="UserExam" Type="Self.UserExam" Multiplicity="*" />
     <ReferentialConstraint>
@@ -139,7 +129,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__UserExam__UserId__1FCDBCEB">
+  <Association Name="FK__UserExam__UserId__33D4B598">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="UserExam" Type="Self.UserExam" Multiplicity="*" />
     <ReferentialConstraint>
@@ -157,30 +147,29 @@
     <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuizList" EntityType="Self.QuizList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserExam" EntityType="Self.UserExam" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Answer__QuizId__1A14E395" Association="Self.FK__Answer__QuizId__1A14E395">
+    <AssociationSet Name="FK__Answer__QuizId__2E1BDC42" Association="Self.FK__Answer__QuizId__2E1BDC42">
       <End Role="Quiz" EntitySet="Quiz" />
       <End Role="Answer" EntitySet="Answer" />
     </AssociationSet>
-    <AssociationSet Name="FK__ExamInfo__QuizLi__1CF15040" Association="Self.FK__ExamInfo__QuizLi__1CF15040">
+    <AssociationSet Name="FK__ExamInfo__QuizLi__30F848ED" Association="Self.FK__ExamInfo__QuizLi__30F848ED">
       <End Role="QuizList" EntitySet="QuizList" />
       <End Role="ExamInfo" EntitySet="ExamInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK__Quiz__Content__173876EA" Association="Self.FK__Quiz__Content__173876EA">
+    <AssociationSet Name="FK__Quiz__Content__2B3F6F97" Association="Self.FK__Quiz__Content__2B3F6F97">
       <End Role="QuizList" EntitySet="QuizList" />
       <End Role="Quiz" EntitySet="Quiz" />
     </AssociationSet>
-    <AssociationSet Name="FK__QuizList__NameLi__145C0A3F" Association="Self.FK__QuizList__NameLi__145C0A3F">
+    <AssociationSet Name="FK__QuizList__NameLi__286302EC" Association="Self.FK__QuizList__NameLi__286302EC">
       <End Role="Subjects" EntitySet="Subjects" />
       <End Role="QuizList" EntitySet="QuizList" />
     </AssociationSet>
-    <AssociationSet Name="FK__UserExam__ExamIn__20C1E124" Association="Self.FK__UserExam__ExamIn__20C1E124">
+    <AssociationSet Name="FK__UserExam__ExamIn__34C8D9D1" Association="Self.FK__UserExam__ExamIn__34C8D9D1">
       <End Role="ExamInfo" EntitySet="ExamInfo" />
       <End Role="UserExam" EntitySet="UserExam" />
     </AssociationSet>
-    <AssociationSet Name="FK__UserExam__UserId__1FCDBCEB" Association="Self.FK__UserExam__UserId__1FCDBCEB">
+    <AssociationSet Name="FK__UserExam__UserId__33D4B598" Association="Self.FK__UserExam__UserId__33D4B598">
       <End Role="Users" EntitySet="Users" />
       <End Role="UserExam" EntitySet="UserExam" />
     </AssociationSet>

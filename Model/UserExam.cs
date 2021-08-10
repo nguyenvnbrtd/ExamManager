@@ -16,8 +16,8 @@ namespace ExamManager.Model
     {
         public int UserId { get; set; }
         public int ExamInfoId { get; set; }
-        public Nullable<int> ExamPoint { get; set; }
         public Nullable<System.DateTime> TimeEntry { get; set; }
+        public Nullable<double> ExamPoint { get; set; }
     
         public virtual ExamInfo ExamInfo { get; set; }
         public virtual Users Users { get; set; }
