@@ -17,8 +17,8 @@ namespace ExamManager.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public QuizList()
         {
-            this.ExamInfoes = new HashSet<ExamInfo>();
-            this.Quizs = new HashSet<Quiz>();
+            this.ExamInfo = new HashSet<ExamInfo>();
+            this.Quiz = new HashSet<Quiz>();
         }
     
         public int Id { get; set; }
@@ -26,9 +26,9 @@ namespace ExamManager.Model
         public string NameList { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExamInfo> ExamInfoes { get; set; }
+        public virtual ICollection<ExamInfo> ExamInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quiz> Quizs { get; set; }
-        public virtual Subject Subject { get; set; }
+        public virtual ICollection<Quiz> Quiz { get; set; }
+        public virtual Subjects Subjects { get; set; }
     }
 }

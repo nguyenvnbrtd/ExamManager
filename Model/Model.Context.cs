@@ -13,10 +13,10 @@ namespace ExamManager.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ExamManagerEntities1 : DbContext
+    public partial class ExamManagerEntities : DbContext
     {
-        public ExamManagerEntities1()
-            : base("name=ExamManagerEntities1")
+        public ExamManagerEntities()
+            : base("name=ExamManagerEntities")
         {
         }
     
@@ -25,13 +25,12 @@ namespace ExamManager.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Answer> Answers { get; set; }
-        public virtual DbSet<ExamInfo> ExamInfoes { get; set; }
-        public virtual DbSet<Quiz> Quizs { get; set; }
-        public virtual DbSet<QuizList> QuizLists { get; set; }
-        public virtual DbSet<Subject> Subjects { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserExam> UserExams { get; set; }
+        public virtual DbSet<Answer> Answer { get; set; }
+        public virtual DbSet<ExamInfo> ExamInfo { get; set; }
+        public virtual DbSet<Quiz> Quiz { get; set; }
+        public virtual DbSet<QuizList> QuizList { get; set; }
+        public virtual DbSet<Subjects> Subjects { get; set; }
+        public virtual DbSet<UserExam> UserExam { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

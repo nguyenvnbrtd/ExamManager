@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12cbf2e075724082bdea67a8630a67c2" Name="Diagram1">
+        <EntityTypeShape EntityType="ExamManagerModel.Answer" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamManagerModel.ExamInfo" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamManagerModel.Quiz" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamManagerModel.QuizList" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamManagerModel.Subjects" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamManagerModel.UserExam" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamManagerModel.Users" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="ExamManagerModel.FK__Answer__QuizId__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamManagerModel.FK__ExamInfo__QuizLi__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamManagerModel.FK__UserExam__ExamIn__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamManagerModel.FK__Quiz__Content__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamManagerModel.FK__QuizList__NameLi__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamManagerModel.FK__UserExam__UserId__33D4B598" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

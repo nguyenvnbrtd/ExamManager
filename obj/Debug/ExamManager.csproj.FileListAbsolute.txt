@@ -60,3 +60,27 @@ D:\App\visual studio\Project\Myproject\ExamManager\ExamManager\obj\Debug\AllExam
 D:\App\visual studio\Project\Myproject\ExamManager\ExamManager\obj\Debug\AllExamWindow.baml
 D:\App\visual studio\Project\Myproject\ExamManager\ExamManager\obj\Debug\UserControlEM\OtherControl.g.cs
 D:\App\visual studio\Project\Myproject\ExamManager\ExamManager\obj\Debug\UserControlEM\OtherControl.baml
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamManager.csproj.AssemblyReference.cache
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\AddingWindow.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\AddSubject.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\AllExamWindow.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamInfo.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\Examing.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\LoginWindow.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\MainWindow.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\AddExam.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\Candidate.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\ExamingLeft.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\ExamingRight.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\Home.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\ListCandidate.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\OtherControl.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\Result.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\UserControlEM\Subject.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\App.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamManager_Content.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamManager_MarkupCompile.cache
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamManager_MarkupCompile.lref
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamManager.exe
+C:\Users\PC\Meeeeeeeeeeeeeeeeee\Dev\PJ\ASP.NET\ExamManager\obj\Debug\ExamManager.pdb

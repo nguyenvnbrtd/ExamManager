@@ -12,26 +12,19 @@ namespace ExamManager.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Subjects
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Subjects()
         {
-            this.UserExams = new HashSet<UserExam>();
+            this.QuizList = new HashSet<QuizList>();
         }
     
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
-        public Nullable<int> Permission { get; set; }
-        public string Name { get; set; }
-        public string Gender { get; set; }
-        public Nullable<System.DateTime> BirthDay { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Job { get; set; }
-        public string MoreInfo { get; set; }
+        public string SubjectName { get; set; }
+        public string Descriptions { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserExam> UserExams { get; set; }
+        public virtual ICollection<QuizList> QuizList { get; set; }
     }
 }
